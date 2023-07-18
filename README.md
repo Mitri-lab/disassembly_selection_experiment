@@ -1,5 +1,5 @@
 # disassembly_selection_experiment
-Code used in a community breeding experiment to disassemble bacterial communities over several weeks.
+Scripts used in a community breeding experiment to disassemble bacterial communities over several weeks.
 
 ---------------- README for disassembly scripts ---------------
 ------ These include 'get_disassembly_Monday_minifiles.py'
