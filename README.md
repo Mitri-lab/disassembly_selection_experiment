@@ -14,7 +14,7 @@ This repository contains scripts used in a community breeding experiment to disa
  - References
 
 ## What are these files?
-The selection experiment by Flor Arias-Sanchez, Sara Mitri, Alice Wallef Géraldine Alberti, Samuele Testa and Bjorn Vessman is performed by means of a method to artificially select and 'breed' bacterial communities for degradation of Metal-Working Fluids (experimental system presented in [1]). The selection method takes into account the COD scores measured in the previous week and suggests a community composition for next week, in order to increase substrate degradation and community cooperation. The scores are assumed to be found in an Excel file of a particular structure (see "3: Input format" below) and the method is implemented in python for easy automation and randomisation of the communities.
+The selection experiment by Flor Arias-Sanchez, Sara Mitri, Alice Wallef Géraldine Alberti, Samuele Testa and Bjorn Vessman is performed by means of a method to artificially select and 'breed' bacterial communities for degradation of Metal-Working Fluids (experimental system presented in [1]). The selection method takes into account the COD scores measured in the previous week and suggests a community composition for next week, in order to increase substrate degradation and community cooperation. The scores are assumed to be found in an Excel file of a particular structure (see "__Input format__" below) and the method is implemented in python for easy automation and randomisation of the communities.
 
 In this README, there is the occasional suggestion to run scripts. In these cases, the terminal is denoted as "$", so "$ python helloworld.py" means to open a terminal window and write "python helloworld.py" in order to run the script "helloworld.py" with the python interpreter.
 
@@ -44,7 +44,8 @@ The script requires the following python libraries
 - scipy and numpy (for SCIentific and NUMerical computations)
 - pandas (for manipulation of data tables)
 - openpyxl (for read/write of MS Excel files)
----- Possibly, openpyxl needs a supporting library xlrd (Pronounced Excel-read and written to do exactly that)
+
+Possibly, openpyxl needs a supporting library xlrd (Pronounced Excel-read and written to do exactly that)
 
 If any of these libraries (aka 'modules') are missing in your python installation, you would see an error message like
 > ModuleNotFoundError: No module named 'EXAMPLE_MODULE_NAME'
@@ -58,27 +59,27 @@ For reference, there is online documentation of each module. Use your search eng
 
 
 ## Format of the input data
----- Big data file '20190718_4SC-ASE_Pilot1.xlsx' or similar
-The input file should be an excel file with Ntubes x Nspecies rows (in our experiment, we expect 2x30 tubes and 11 species, giving 660 rows in total). The columns should include, in the following order,
--Assembly_Day          Day of assembly of community, a Thursday with a YYYYMMDD date.
--Experiment            Experiment label '4SC-ASE' (four-species communities, artificial selection experiment)
--Round_nr             'Pilot2', 'Week45' or similar
--Selection_Treatment  'Group', 'Control' or 'Treatment1', 'Treatment2' if randomised
--Tube                  1, 2, ..., Ntubes
--Sp_Nr                 Species labels (not necessarily numbers) 1, 2, ..., 119, 1w
--Sp_Presence           Is the corresponding species present (1) or not (0)?
--COD_Day0              COD measurement on day 0
--log10CFUml_Day0       CFU estimation, day 0
--COD_Day4              COD measurement on day 4
--Disassembly_Agar      Should this tube be plated for community disassembly? (1 else 0)
--Survival_Day4         Is the species present (1) at day 4 or not (0)?
--Extin-Cont_Day4       Combining 'Sp_Presence' and 'Survival_Day4', we can find extinction events and contamination.
--Dilution_Day4         Lowest dilution at which colonies were found
--Droplet_Day4          Size of pipetted droplet
--CFU_Day4              Colonies counted at the dilution 'Dilution_Day4'
--log10CFUml_Day4       Estimate CFU based on 'CFU_Day4', 'Droplet_Day4' and 'Dilution_Day4'
--Selected4NextRound    Marker (1 or 0) from which tube to propagate colonies to next round
----- Input_CFUCOD.csv
+The input file should be an excel file with Ntubes x Nspecies rows (in our experiment, we expect 2x30 tubes and 11 species, giving 660 rows in total). The columns should include, in the following order:
+ - Assembly_Day:	Day of assembly of community, a Thursday with a YYYYMMDD date.
+ - Experiment:	Experiment label '4SC-ASE' (four-species communities, artificial selection experiment)
+ - Round_nr:	'Pilot2', 'Week45' or similar
+ - Selection_Treatment:	Group', 'Control' or 'Treatment1', 'Treatment2' if randomised
+ - Tube:	1, 2, ..., Ntubes
+ - Sp_Nr:	Species labels (not necessarily numbers) 1, 2, ..., 119, 1w
+ - Sp_Presence:	Is the corresponding species present (1) or not (0)?
+ - COD_Day0:	COD measurement on day 0
+ - log10CFUml_Day0:	CFU estimation, day 0
+ - COD_Day4:	COD measurement on day 4
+ - Disassembly_Agar:	Should this tube be plated for community disassembly? (1 else 0)
+ - Survival_Day4:	Is the species present (1) at day 4 or not (0)?
+ - Extin-Cont_Day4:	Combining 'Sp_Presence' and 'Survival_Day4', we can find extinction events and contamination.
+ - Dilution_Day4:	Lowest dilution at which colonies were found
+ - Droplet_Day4:	Size of pipetted droplet
+ - CFU_Day4:	Colonies counted at the dilution 'Dilution_Day4'
+ - log10CFUml_Day4:	Estimate CFU based on 'CFU_Day4', 'Droplet_Day4' and 'Dilution_Day4'
+ - Selected4NextRound:	Marker (1 or 0) from which tube to propagate colonies to next round
+
+See '20190718_4SC-ASE_Pilot1.xlsx' for an example input file.
 
 ## Schedule - when and to run the scripts
 The selection method workflow is implemented in the python scripts, which are supposed to run when the corresponding data is available. The experimental procedure starts by inoculating the relevant communities on a Thursday (the communities is assumed to be known from last week's results), measuring the initial COD and noting which species is present in which community. On a Monday, COD measurements are taken and noted in the data file which is then read by 'get_disassembly_Monday.py'. On the following Wednesday, the disassembly tells us the survival of species in each plated community, and where we should sample each species. Finally, the COD measurements and community survival is used to propose new community compositions for next week.
