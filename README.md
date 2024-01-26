@@ -11,7 +11,6 @@ This repository contains scripts used in a community breeding experiment to disa
   - Step 1 - get_disassembly_Monday_minifiles.py
   - Step 2  - get_nextweek_Wednesday.py
   - Step2  - get_nextweek_Wednesday_minifiles.py
- - TODO
  - References
 
 ## What are these files?
@@ -117,5 +116,5 @@ The script reads COD and community composition from the 'master' file and marks 
 A minifile version of 'get_nextweek_Wednesday.py', using the COD minifile (also used on Monday, see section 3a1) and disassembly file with three sheets: Treatment 1, Treatment 2 and Survival. Each sheet contains 1s and 0s marking whether the species is present or absent in that tube.
 
 
-## 99: References
+## References
 [1] Piccardi, Vessman, Mitri (2019) 'Toxicity drives facilitation between four bacterial species' PNAS
