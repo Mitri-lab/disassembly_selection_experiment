@@ -1,18 +1,5 @@
 # Disassembly selection experiment
-This repository contains scripts used in a community breeding experiment to disassemble bacterial communities over several weeks. 
-
----------------- README for disassembly scripts ---------------
------- These include 'get_disassembly_Monday_minifiles.py'
-------               'get_nextweek_Wednesday_minifiles.py'
------- The supporting functions are found in 'selection_funcs_v010.py'
----- by Björn Vessman (Bjorn.Vessman@unil.ch)
-v.01.0 on 2019-08-05, basic form of each script
-          2019-08-12, added functions to create a new data file for 'next' week and
-                      modify it with new CFU, COD
-          2019-08-26, Minifiles version for the Monday, Wednesday scripts.
-          2019-10-04, Method updates
-
-
+This repository contains scripts used in a community breeding experiment to disassemble bacterial communities over several weeks. All code is written by Björn Vessman (Bjorn.Vessman@unil.ch). This project is described in more detail in our preprint [Arias-Sánchez et al., 2023](https://www.biorxiv.org/content/10.1101/2023.07.27.550627v1.abstract).
 
 ## Table of contents
  - What are these files?
@@ -26,8 +13,6 @@ v.01.0 on 2019-08-05, basic form of each script
   - Step2  - get_nextweek_Wednesday_minifiles.py
  - TODO
  - References
- - Contributors
-
 
 ## What are these files?
 The selection experiment by Flor Arias-Sanchez, Sara Mitri, Alice Wallef Géraldine Alberti, Samuele Testa and Bjorn Vessman is performed by means of a method to artificially select and 'breed' bacterial communities for degradation of Metal-Working Fluids (experimental system presented in [1]). The selection method takes into account the COD scores measured in the previous week and suggests a community composition for next week, in order to increase substrate degradation and community cooperation. The scores are assumed to be found in an Excel file of a particular structure (see "3: Input format" below) and the method is implemented in python for easy automation and randomisation of the communities.
@@ -35,15 +20,17 @@ The selection experiment by Flor Arias-Sanchez, Sara Mitri, Alice Wallef Gérald
 In this README, there is the occasional suggestion to run scripts. In these cases, the terminal is denoted as "$", so "$ python helloworld.py" means to open a terminal window and write "python helloworld.py" in order to run the script "helloworld.py" with the python interpreter.
 
 The folder contains a few python files, namely
-- selection_funcs_v010.py, a collection of functions used by the scripts.
+ - get_disassembly_Monday_minifiles.py
+ - get_nextweek_Wednesday_minifiles.py
+ - selection_funcs_v010.py, a collection of functions used by the scripts.
   This file is not a script in itself and cannot be run as it is written now.
-- get_disassembly_Monday.py (deprecated)
+ - get_disassembly_Monday.py (deprecated)
   The script reads an Excel file with data on community composition and COD, and
   writes an Excel file with a suggested disassembly - how to recapture each species
   from the collection of tubes. The script is run after the COD measurements are noted,
   typically on a Monday. If wanted, the script can alter the main data file and update it
   with the inoculum CFU (day 0) and COD for day 0 and day 4.
-- get_nextweek_Wednesday.py (deprecated)
+ - get_nextweek_Wednesday.py (deprecated)
   The script reads the main Excel data file and the Excel file output by the Monday script. Based on these, we mark which tube to sample each species from based on their survival. Each species should be sampled from the highest-scoring community in which it survived. The output is a coloured version of the Monday output (either in a new, separate file or in the same file) which marks where to sample each species.
 
 ## Software pre-requisites
@@ -128,15 +115,6 @@ The script reads COD and community composition from the 'master' file and marks 
 
 
 A minifile version of 'get_nextweek_Wednesday.py', using the COD minifile (also used on Monday, see section 3a1) and disassembly file with three sheets: Treatment 1, Treatment 2 and Survival. Each sheet contains 1s and 0s marking whether the species is present or absent in that tube.
-
-
-
-## TODO
-There are a few hacks and temporary solutions since the first pilot experiment data does not exactly follow the assumptions.
--- selection_funcs_v010.py
-- set_tubesbyspec(dfs,outfile)
-cell widths in output Excel file
-
 
 
 ## 99: References
