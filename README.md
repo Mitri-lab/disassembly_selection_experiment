@@ -1,5 +1,5 @@
 # Disassembly selection experiment
-This repository contains scripts used in a community breeding experiment to disassemble bacterial communities over several weeks. All code is written by Björn Vessman (Bjorn.Vessman@unil.ch). This project is described in more detail in our preprint [Arias-Sánchez et al., 2023](https://www.biorxiv.org/content/10.1101/2023.07.27.550627v1.abstract).
+This repository contains scripts used in a community breeding experiment to disassemble bacterial communities over several weeks. All code is written by Björn Vessman (Bjorn.Vessman@unil.ch). This project is described in more detail in our preprint [Vessmann et al., 2023](https://www.biorxiv.org/content/10.1101/2023.01.08.523165v1).
 
 ## Table of contents
  - What are these files?
